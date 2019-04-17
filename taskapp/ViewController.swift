@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,8 +21,6 @@ class ViewController: UIViewController {
     //日付が近い順＼順でソース：降順
     //以降内容をアップデートするとリスト内は自動的に更新される
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +57,7 @@ class ViewController: UIViewController {
     // MARK: UITableViewDelegateプロトコルのメソッド
     // 各セルを選択した時に実行されるメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        performSegue(withIdentifier: "cellSegue", sender: nil)
+        performSegue(withIdentifier: "cellSegue",sender: nil)
     }
     
     // セルが削除が可能なことを伝えるメソッド
