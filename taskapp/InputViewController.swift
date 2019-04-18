@@ -35,55 +35,57 @@ class InputViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        try! realm.write{
+        try! realm.write {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
             self.realm.add(self.task, update: true)
         }
+        
         setNotification(task: task)
         
         super.viewWillDisappear(animated)
     }
     
-    //タスクのローカル通知を登録する
-    func  setNotification(task: Task){
-        let  contents = UNMutableNotificationContent()
-        //タイトルと内容を設定（中身がない場合、メッセージなしで音だけの通知になるので「xxなし」を表示する）
-        if task.title == ""{
-            contents.title = "(タイトルなし)"
-        }else{
-            contents.title = task.title
+    // タスクのローカル通知を登録する --- ここから ---
+    func setNotification(task: Task) {
+        let content = UNMutableNotificationContent()
+        // タイトルと内容を設定(中身がない場合メッセージ無しで音だけの通知になるので「(xxなし)」を表示する)
+        if task.title == "" {
+            content.title = "(タイトルなし)"
+        } else {
+            content.title = task.title
         }
-        if task.contents == ""{
-            contents.body = "(内容なし)"
-        }else{
-            contents.body = task.contents
+        if task.contents == "" {
+            content.body = "(内容なし)"
+        } else {
+            content.body = task.contents
         }
-        contents.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound.default
         
-        //ローカル通知が発動するtrigger(日付マッチ)を作成
-        let calender = Calendar.current
-        let dateComponents = calender.dateComponents([.year, .month, .day, .hour, .minute], from: task.date)
+        // ローカル通知が発動するtrigger（日付マッチ）を作成
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: task.date)
         let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: false)
         
         // identifier, content, triggerからローカル通知を作成（identifierが同じだとローカル通知を上書き保存）
-        let request = UNNotificationRequest.init(identifier: String(task.id), content: contents, trigger: trigger)
+        let request = UNNotificationRequest.init(identifier: String(task.id), content: content, trigger: trigger)
         
         // ローカル通知を登録
         let center = UNUserNotificationCenter.current()
-        center.add(request){ (error) in
+        center.add(request) { (error) in
             print(error ?? "ローカル通知登録 OK")
         }
+        
         // 未通知のローカル通知一覧をログ出力
-        center.getPendingNotificationRequests{ (request: [UNNotificationRequest]) in
-            for request in request{
+        center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+            for request in requests {
                 print("/---------------")
                 print(request)
                 print("---------------/")
             }
         }
-    }
+    } 
     
     @objc func dismissKeyboard(){
         //キーボードを閉じる
