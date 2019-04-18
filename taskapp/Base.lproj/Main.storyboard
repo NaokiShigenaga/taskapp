@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9TW-Ag-Ycy">
-                                <rect key="frame" x="0.0" y="112" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="NmU-f0-g2w" detailTextLabel="HAM-0W-8CS" style="IBUITableViewCellStyleSubtitle" id="yDz-q9-CTr">
@@ -48,28 +48,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZRj-zw-dqB">
-                                <rect key="frame" x="10" y="74" width="314" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eny-1N-JOp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-i9-Mfh">
-                                <rect key="frame" x="334" y="74" width="31" height="30"/>
-                                <state key="normal" title="検索"/>
-                            </button>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BPR-Wr-rWo"/>
-                            <constraint firstAttribute="trailing" secondItem="9TW-Ag-Ycy" secondAttribute="trailing" id="CvH-b8-Ay2"/>
-                            <constraint firstItem="L5D-i9-Mfh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="JDT-K5-5Og"/>
-                            <constraint firstItem="ZRj-zw-dqB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="jNi-Q6-Za7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L5D-i9-Mfh" secondAttribute="trailing" constant="10" id="jTo-Ut-5XV"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="top" secondItem="ZRj-zw-dqB" secondAttribute="bottom" constant="8" symbolic="YES" id="pGb-Nx-pPW"/>
-                            <constraint firstItem="L5D-i9-Mfh" firstAttribute="leading" secondItem="ZRj-zw-dqB" secondAttribute="trailing" constant="10" id="tj5-qb-FLi"/>
-                            <constraint firstItem="ZRj-zw-dqB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xfe-LD-SL4"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="yDV-qK-M3u"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="35Y-dj-T8M"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="leading" secondItem="eny-1N-JOp" secondAttribute="leading" id="8Oa-SV-mNr"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="NeT-FU-ji1"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="top" secondItem="eny-1N-JOp" secondAttribute="bottom" id="Rx9-7Q-dPv"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dbD-LY-mN9"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="trailing" secondItem="eny-1N-JOp" secondAttribute="trailing" id="hO0-38-ceS"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="loM-ID-Zvq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -81,7 +73,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchTextField" destination="ZRj-zw-dqB" id="1Z7-J1-CNq"/>
+                        <outlet property="searchBar" destination="eny-1N-JOp" id="Z7S-rr-JEU"/>
                         <outlet property="tableView" destination="9TW-Ag-Ycy" id="jeD-Qh-5yt"/>
                         <segue destination="xU9-Ca-DDm" kind="show" identifier="cellSegue" id="clW-8k-bRG"/>
                     </connections>

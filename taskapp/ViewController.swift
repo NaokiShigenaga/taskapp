@@ -13,8 +13,8 @@ import UserNotifications
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //Realmインスタンスを取得する
     let realm = try! Realm()
@@ -26,7 +26,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     
     //条件指定(検証用)
-    var taskArray = try! Realm().objects(Task.self).filter("category == '重要'")
+    var taskArray = try! Realm().objects(Task.self).filter("category == searchBar.text")
+    //var taskArray = try! Realm().objects(Task.self).filter("search BEGINSWITH %@", searchBar.text)
+    
     
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(_ animated: Bool) {
