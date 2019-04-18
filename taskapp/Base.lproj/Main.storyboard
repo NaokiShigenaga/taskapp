@@ -81,6 +81,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchTextField" destination="ZRj-zw-dqB" id="1Z7-J1-CNq"/>
                         <outlet property="tableView" destination="9TW-Ag-Ycy" id="jeD-Qh-5yt"/>
                         <segue destination="xU9-Ca-DDm" kind="show" identifier="cellSegue" id="clW-8k-bRG"/>
                     </connections>
