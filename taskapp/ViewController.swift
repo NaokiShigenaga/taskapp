@@ -10,11 +10,10 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var textSearchBar: UISearchBar!
     
     //Realmインスタンスを取得する
     let realm = try! Realm()
@@ -23,13 +22,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //日付が近い順＼順でソース：降順
     //以降内容をアップデートするとリスト内は自動的に更新される
     
-    //var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
     
     //条件指定(検証用)
-    var taskArray = try! Realm().objects(Task.self).filter("category == searchBar.text")
-    //var taskArray = try! Realm().objects(Task.self).filter("search BEGINSWITH %@", searchBar.text)
-    
-    
+    //var taskArray = try! Realm().objects(Task.self).filter("category == '重要'")//
+    //var taskArray = try! Realm().objects(Task.self).filter("search BEGINSWITH %@", textSearchBar.text!)
+    //print("number \(textSearchBar.text)")
+
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,6 +61,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        textSearchBar.delegate = self
+        
     }
     
     // MARK: UITableViewDataSourceプロトコルのメソッド
@@ -123,5 +124,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-}
+    //検索バーが押されたとき
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        //テスト用
+        //print("テスト : " + textSearchBar.text!)
+        //条件検索
+        self.taskArray = try! Realm().objects(Task.self).filter("category BEGINSWITH %@", textSearchBar.text!)
+        
+        if(taskArray.isEmpty){
+            //print("データがありません！")
+        }else{
+            //print("データがあ〜るよ！")
+        }
+        //テスト用
+        //print(taskArray)
+        //キーボードを閉じる
+        self.view.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 
+        //条件検索
+        self.taskArray = try! Realm().objects(Task.self)
+
+        //検索結果を表示
+        tableView.reloadData()
+    }
+}

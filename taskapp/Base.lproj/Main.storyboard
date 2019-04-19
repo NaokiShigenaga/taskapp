@@ -48,20 +48,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eny-1N-JOp">
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="eny-1N-JOp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eny-1N-JOp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="35Y-dj-T8M"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="leading" secondItem="eny-1N-JOp" secondAttribute="leading" id="8Oa-SV-mNr"/>
-                            <constraint firstItem="eny-1N-JOp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="NeT-FU-ji1"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="top" secondItem="eny-1N-JOp" secondAttribute="bottom" id="Rx9-7Q-dPv"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="dbD-LY-mN9"/>
-                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="trailing" secondItem="eny-1N-JOp" secondAttribute="trailing" id="hO0-38-ceS"/>
-                            <constraint firstItem="eny-1N-JOp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="loM-ID-Zvq"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="top" secondItem="eny-1N-JOp" secondAttribute="bottom" id="6Do-9H-zkt"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ASp-WW-gQv"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CIM-OV-jUK"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LaB-H1-dtO"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VIp-9z-YXI"/>
+                            <constraint firstItem="9TW-Ag-Ycy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZMc-tu-gaq"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gaK-Fi-4yc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9TW-Ag-Ycy" secondAttribute="bottom" id="keC-kx-4h1"/>
+                            <constraint firstItem="eny-1N-JOp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="moz-iQ-42m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -73,8 +75,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="eny-1N-JOp" id="Z7S-rr-JEU"/>
                         <outlet property="tableView" destination="9TW-Ag-Ycy" id="jeD-Qh-5yt"/>
+                        <outlet property="textSearchBar" destination="eny-1N-JOp" id="Pn3-sj-chb"/>
                         <segue destination="xU9-Ca-DDm" kind="show" identifier="cellSegue" id="clW-8k-bRG"/>
                     </connections>
                 </viewController>
