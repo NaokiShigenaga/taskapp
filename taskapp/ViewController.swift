@@ -137,8 +137,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }else{
             //print("データがあ〜るよ！")
         }
+        
         //テスト用
         //print(taskArray)
+        //検索結果を表示
+        tableView.reloadData()
         //キーボードを閉じる
         self.view.endEditing(true)
     }
