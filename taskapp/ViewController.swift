@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //var taskArray = try! Realm().objects(Task.self).filter("category == '重要'")//
     //var taskArray = try! Realm().objects(Task.self).filter("search BEGINSWITH %@", textSearchBar.text!)
     //print("number \(textSearchBar.text)")
-
+    
     // 入力画面から戻ってきた時に TableView を更新させる
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -127,6 +127,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //検索バーが押されたとき
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        //キャンセルボタンの表示
+        textSearchBar.showsCancelButton = true
+        
         //テスト用
         //print("テスト : " + textSearchBar.text!)
         //条件検索
@@ -134,6 +137,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if(taskArray.isEmpty){
             //print("データがありません！")
+            //アラート表示
+            let Alert: UIAlertController = UIAlertController(title:"検索データがありません！",message:"",preferredStyle: .alert)
+            let CloseAction = UIAlertAction(title: "閉じる", style: .default) {
+                action in
+                print("閉じる")
+            }
+            Alert.addAction(CloseAction)
+            present(Alert, animated: true, completion: nil)
+            
         }else{
             //print("データがあ〜るよ！")
         }
@@ -145,13 +157,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //キーボードを閉じる
         self.view.endEditing(true)
     }
-    
+
+    // キャンセルボタンが押された時
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-
-        //条件検索
+        textSearchBar.showsCancelButton = false
+        self.view.endEditing(true)
+        //SearchBarのデータを空にする
+        textSearchBar.text = ""
+        //元の全件表示に戻す
         self.taskArray = try! Realm().objects(Task.self)
-
-        //検索結果を表示
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
 }
